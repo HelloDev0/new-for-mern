@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import './register.css'
 import axios from 'axios'
 import { useHistory } from 'react-router'
+import { useDispatch } from 'react-redux'
+import { userLogin } from '../redux/actions/cartActions'
 
 const Login = () => {
+    const dispatch=useDispatch()
 const history=useHistory()
 const[user,setUser]=useState({
     email:'',
@@ -23,7 +26,9 @@ const login=async(e)=>{
     console.log(response.data)
     localStorage.setItem('userID',response.data.id)
     localStorage.setItem('user',response.data.name)
+    const User=localStorage.getItem('userID')
     history.push('/')
+    dispatch(userLogin(User))
 }
 
     return (

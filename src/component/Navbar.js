@@ -1,14 +1,20 @@
-import React from 'react'
+import axios from 'axios'
+import React, {  useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import "./view.css"
+import { useDispatch } from 'react-redux'
+import { addToSearch, cartReset, userLogout } from '../redux/actions/cartActions'
+
+
 const Navbar = () => {
     const history = useHistory()
     const products = useSelector((state) => state.cart.cartItems)
+    const dispatch = useDispatch()
+    // console.log("in the navbar state is")
 
-    console.log("in the navbar", products.length)
-
-
+    const userAvail=useSelector((state)=>state.cart.user)
+    console.log('objectobjectobjectobjectobjectuser',typeof userAvail)
     const username = localStorage.getItem('user')
     console.log(typeof username)
     const viewCart = () => {
@@ -18,7 +24,44 @@ const Navbar = () => {
 
     const logout = () => {
         localStorage.removeItem('user')
+        history.push('/login')
+        dispatch(userLogout())
     }
+
+
+    const [user, setUser] = useState({
+        title: ""
+    })
+
+    // setUser(e.target.value)
+    const handleChange = e => {
+        const { name, value } = e.target
+        setUser({
+            ...user,
+            [name]: value
+        })
+    }
+
+    const dataSend = user.title
+    const [data, setData] = useState()
+
+
+    // console.log("objecthhhhh", dataSend)
+    useEffect(() => {
+        
+
+        
+    }, [])
+
+    const callSearch = async () => {
+        await axios.get(`http://localhost:1337/search/?q=${dataSend}`)
+                .then((res) => {
+                    console.log('just chcekl',res.data)
+                    setData(res.data)
+                })
+        dispatch(addToSearch(data))
+    }
+
     return (
         <div>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,16 +72,29 @@ const Navbar = () => {
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <h4 className='text-white'>Welcome {username} to our Libray</h4>
+                        <h4 className='text-success'>Welcome {username}  <i class="far fa-smile text-success"></i></h4>
                     </ul>
-                    <div class="form-inline my-2 my-lg-0">
-                       <button onClick={ viewCart } className="btn_cart"> 
-                       <i class="fas fa-shopping-cart text-white h3 mx-5"></i>
-                        <span className='cart_number' >{products.length}</span></button>
 
-                        <button class="btn btn-warning my-2 mx-2 my-sm-0" onClick={() => { history.push('./Register') }}>Regitser</button>
-                        {!username ? (
+                    <div class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                            name="title" value={user.title} onChange={handleChange}
+                        ></input>
+                        <button class="btn btn-outline-success mx-2"
+                            onClick={callSearch}>Search</button>
+                        <button className='btn btn-secondary' onClick={() => { dispatch(cartReset()) }}><i class="far fa-times-circle"></i></button>
+                    </div>
+
+                    <div class="form-inline my-2 my-lg-0" >
+                        <button onClick={() => { viewCart() }} className="btn btn_cart">
+                            <i class="fas fa-shopping-cart text-white h3 mx-5"><span className='cart_number' >{products.length}</span></i>
+                        </button>
+
+                        
+                        {userAvail.length==0 ? (
+                            <div>
+                            <button class="btn btn-warning my-2 mx-2 my-sm-0" onClick={() => { history.push('./Register') }}>Regitser</button>
                             <button class="btn btn-success my-2 my-sm-0" onClick={() => { history.push('./Login') }}>Login</button>
+                            </div>
                         ) : (
                             <button class="btn btn-danger my-2 my-sm-0" onClick={logout}>Logout</button>
                         )}
@@ -49,4 +105,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

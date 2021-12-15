@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import CartScreen from './component/CartScreen';
@@ -9,14 +9,19 @@ import Register from './component/Register';
 import View from './component/View';
 // import Register from './component/Register';
 function App() {
+  
+  
+  // console.log('cvghgcvghvjvkjhvhjvjvjvjv in app',addTodo)
+
   return (
     <Router>
       <Navbar />
       <Switch>
       <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-          <Route exact path="/" component={View} />
+          <Route exact path="/" component={View}   />
           <Route exact path='/cart' component={CartScreen} />
+          
       </Switch>
     </Router>
   );

@@ -1,24 +1,25 @@
 .itemsOfUser{
-    display: flex;
+    /* display: flex; */
     padding: 3rem;
+    /* width: 5rem; */
 }
 .car {
-    /* display: flex; */
-    list-style: none;
+    display: flex;
+    /* list-style: none; */
 }
 .car button{
     border: none;
     color: rgb(0, 0, 0);
-    background-color: rgb(247, 28, 112);
+    background-color: rgb(247, 28, 28);
     padding: 5px 10px;
     margin-bottom: 1rem;
     border-radius: 1rem;
 }
 .cart_number{
-    color: rgb(247, 28, 112);
-    position: absolute;
+    color: rgb(36, 4, 4);
+    /* position: absolute;
     right: 280px;
-    top: 10px;
+    top: 10px; */
     font-size: 25px;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
@@ -28,4 +29,11 @@
 .btn_cart{
     border-style: none;
     background: none;
+    outline-color: none;
+    
 }
+.image{
+    width: 8rem;
+    height: 10rem;
+}
+/* @media() */
