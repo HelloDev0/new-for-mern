@@ -38,7 +38,7 @@ const products = [
   {
     name: "Gwava",
     imageUrl:
-      "https://stylesatlife.com/wp-content/uploads/2020/03/Guava-fruit.jpg.webp",
+      "https://m.media-amazon.com/images/I/41dGoCDGXmL._SX466_.jpg",
     description:
       "These are the fruits selected from different places of india",
     price: 220,

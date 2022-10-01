@@ -21,7 +21,13 @@ const getProductById = async (req, res) => {
   }
 };
 
+const addProduct=async(req, res)=>{
+
+  
+}
+
 module.exports = {
   getProducts,
   getProductById,
+  addProduct
 };

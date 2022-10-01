@@ -26,7 +26,7 @@ const Navbar = ({ click }) => {
 
     return ( 
         <nav className="navbar">
-      <div className="navbar__logo">
+      <div className="navbar__logo " onClick={()=>{history.replace('/')}}>
         <h2>Fruits Shopping Cart</h2>
       </div>
 
@@ -44,14 +44,14 @@ const Navbar = ({ click }) => {
         </li>
       </ul>
 
-      <button className='btn1' onClick={()=>{history.push('./Register')}}>Register</button>
+      <button className='btn btn-secondary' onClick={()=>{history.push('./Register')}}>Register</button>
 
       {!userdetail ? (
             <div>
-              <button className='btn1' onClick={()=>{history.push('./Login')}}>Login</button>
+              <button className='btn btn-success' onClick={()=>{history.push('./Login')}}>Login</button>
             </div>
           ) : (
-            <button className='btn1' onClick={removeUser}>logout</button>
+            <button className='btn btn-danger' onClick={removeUser}>logout</button>
           )}
       <div className="hamburger__menu" onClick={click}>
         <div></div>
