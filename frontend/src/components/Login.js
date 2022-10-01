@@ -47,15 +47,13 @@ const Login = () => {
     return (
         <div>
             <div className="register">
-                <form>
-                    <h3>Login Page</h3>
-                    {/* <h5>Name</h5>
-            <input type='text' name="name" value={user.name} onChange={handleChange}></input> */}
-                    <h5>Email</h5>
-                    <input type='email' name="email" value={user.email} onChange={handleChange}></input>
-                    <h5>Password</h5>
-                    <input type='password' name="password" value={user.password} onChange={handleChange}></input> <br />
-                    <button onClick={login}>login</button>
+                <form className='w-50 m-auto bg-secondary p-5 rounded'>
+                    <h3 className='text-white'>Welcome to FruitsMarket</h3>
+                    <h5 className='text-left text-white'>Email</h5>
+                    <input type="email" class="form-control bg-white" name='email' onChange={handleChange}/>
+                    <h5 className='text-left text-white'>Password</h5>
+                    <input type="password" class="form-control bg-white" name='password' onChange={handleChange}/>
+                    <button onClick={login} className="btn btn-success text-white mt-3">Login</button>
                 </form>
             </div>
         </div>
