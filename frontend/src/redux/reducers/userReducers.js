@@ -1,7 +1,7 @@
 import * as actionTypes from '../constants/userConstants'
 
 const userState = {
-    token: "",
+    token: localStorage.getItem('token') || "",
     userId: ""
 }
 
@@ -14,17 +14,11 @@ export const userReducer = (state = userState, action) => {
                 token: item.token,
                 userId: item.id
             };
-        //   } else {
-        //     return {
-        //       ...state,
-        //       cartItems: [...state.cartItems, item],
-        //     };
-        //   }
         case actionTypes.USER_REMOVED:
             return {
                 ...state,
-                token: '',
-                userId: '',
+                token: "",
+                userId: "",
             };
         default:
             return state;

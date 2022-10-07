@@ -31,7 +31,7 @@ const Navbar = ({ click }) => {
     history.replace('/login')
     setUserDetails(!userDetails)
   }
-  console.log(userDetails)
+  // console.log(userDetails)
   return (
     <nav className="navbar">
       <div className="navbar__logo " onClick={() => { history.replace('/') }}>
