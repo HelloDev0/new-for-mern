@@ -73,7 +73,7 @@ const CartScreen = () => {
 
   return (
     <>
-    {!userId ?(
+    {userId ?(
       <div className="cartscreen">
         <div className="cartscreen__left">
           <h2>Shopping Cart</h2>

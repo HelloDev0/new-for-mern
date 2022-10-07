@@ -1,0 +1,3 @@
+export const USER_AUTHENTICATED = "USER_AUTHENTICATED";
+export const USER_REMOVED = "USER_REMOVED";
+

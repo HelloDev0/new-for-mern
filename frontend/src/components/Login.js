@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import "./register.css"
 import { useHistory } from "react-router-dom"
 import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { userAuth } from '../redux/actions/userActions';
 
 
 const Login = () => {
     const history = useHistory();
+    const dispatch=useDispatch()
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -27,6 +30,7 @@ const Login = () => {
         localStorage.setItem('token',response.data.tkn)
         localStorage.setItem('user',JSON.stringify(response.data.user))
         console.log(response.data)
+        dispatch(userAuth(response?.data?.user?._id,response.data.tkn))
         history.push('/')
         // if (email && password) {
         //     axios.post("http://localhost:5000/api/user/login", user)
@@ -50,9 +54,9 @@ const Login = () => {
                 <form className='w-50 m-auto bg-secondary p-5 rounded'>
                     <h3 className='text-white'>Welcome to FruitsMarket</h3>
                     <h5 className='text-left text-white'>Email</h5>
-                    <input type="email" class="form-control bg-white" name='email' onChange={handleChange}/>
+                    <input type="email" className="form-control bg-white" name='email' onChange={handleChange}/>
                     <h5 className='text-left text-white'>Password</h5>
-                    <input type="password" class="form-control bg-white" name='password' onChange={handleChange}/>
+                    <input type="password" className="form-control bg-white" name='password' onChange={handleChange}/>
                     <button onClick={login} className="btn btn-success text-white mt-3">Login</button>
                 </form>
             </div>
